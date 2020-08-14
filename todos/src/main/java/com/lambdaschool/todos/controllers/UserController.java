@@ -1,12 +1,12 @@
 package com.lambdaschool.todos.controllers;
 
 import com.lambdaschool.todos.models.User;
-import com.lambdaschool.todos.services.UserService;
 import com.lambdaschool.todos.views.UserNameCountTodos;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import com.lambdaschool.todos.services.UserService;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -54,9 +54,7 @@ public class UserController
      */
     @GetMapping(value = "/user/{userId}",
         produces = {"application/json"})
-    public ResponseEntity<?> getUserById(
-        @PathVariable
-            Long userId)
+    public ResponseEntity<?> getUserById(@PathVariable long userId)
     {
         User u = userService.findUserById(userId);
         return new ResponseEntity<>(u,

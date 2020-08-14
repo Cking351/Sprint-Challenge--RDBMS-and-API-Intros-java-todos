@@ -44,8 +44,7 @@ public class UserServiceImpl implements UserService
          * findAll returns an iterator set.
          * iterate over the iterator set and add each element to an array list.
          */
-        userrepos.findAll()
-            .iterator()
+        userrepos.findAll().iterator()
             .forEachRemaining(list::add);
         return list;
     }
