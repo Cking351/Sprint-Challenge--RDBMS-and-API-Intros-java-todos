@@ -6,28 +6,33 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "todos")
-public class Todos {
+public class Todos extends Auditable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(nullable = false,
+            unique = true)
     private long todoid;
 
-    @ManyToOne
-    @JoinColumn(name = "userid", nullable = false)
-    @JsonIgnoreProperties(value = "todos", allowSetters = true)
-    private User user;
-
     @Column(nullable = false)
-    private String description;
+    String description;
 
+    @Column
     private boolean completed;
+
+    @ManyToOne
+    @JoinColumn(name = "userid"
+            , nullable = false)
+    @JsonIgnoreProperties("todos")
+    private User user;
 
     public Todos() {
     }
 
-    public Todos(com.lambdaschool.todos.models.User user, String description) {
-        this.user = user;
+    public Todos(User user, String description) {
         this.description = description;
+        this.user = user;
+        this.completed = false;
     }
 
     public long getTodoid() {
@@ -36,14 +41,6 @@ public class Todos {
 
     public void setTodoid(long todoid) {
         this.todoid = todoid;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
     }
 
     public String getDescription() {
@@ -60,5 +57,13 @@ public class Todos {
 
     public void setCompleted(boolean completed) {
         this.completed = completed;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }
