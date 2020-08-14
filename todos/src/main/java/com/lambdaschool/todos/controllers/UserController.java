@@ -72,10 +72,7 @@ public class UserController
      */
     @PostMapping(value = "/user",
         consumes = {"application/json"})
-    public ResponseEntity<?> addNewUser(
-        @Valid
-        @RequestBody
-            User newuser) throws URISyntaxException
+    public ResponseEntity<?> addNewUser(@Valid @RequestBody User newuser) throws URISyntaxException
     {
         newuser.setUserid(0);
         newuser = userService.save(newuser);
