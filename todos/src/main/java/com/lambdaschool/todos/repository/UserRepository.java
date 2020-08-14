@@ -15,6 +15,6 @@ public interface UserRepository extends CrudRepository<User, Long> {
             "ON u.userid = t.userid " +
             "WHERE NOT t.completed " +
             "GROUP BY u.username " +
-            "ORDER BY u.username", nativeQuery = true)
+            "ORDER BY u.username", nativeQuery = true) // fixed this
     List<UserNameCountTodos> getCountUserTodos();
 }
