@@ -1,5 +1,6 @@
 package com.lambdaschool.todos;
 
+import com.lambdaschool.todos.models.Todos;
 import com.lambdaschool.todos.models.User;
 import com.lambdaschool.todos.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,17 +50,17 @@ public class SeedData implements CommandLineRunner
         userService.save(u1);
 
         User u2 = new User("cinnamon",
-                           "1234567",
-                           "cinnamon@lambdaschool.local");
+                "1234567",
+                "cinnamon@lambdaschool.local");
         u2.getTodos()
                 .add(new Todos(u2,
-                               "Take a nap"));
+                        "Take a nap"));
         u2.getTodos()
                 .add(new Todos(u2,
-                               "Rearrange my hutch"));
+                        "Rearrange my hutch"));
         u2.getTodos()
                 .add(new Todos(u2,
-                               "Groom my fur"));
+                        "Groom my fur"));
         userService.save(u2);
 
         // user
